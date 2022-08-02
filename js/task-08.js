@@ -1,23 +1,36 @@
+// const form = document.querySelector('.login-form');
+
+// form.addEventListener('submit', onFormSubmit);
+
+// function onFormSubmit(event) {
+//     event.preventDefault();
+//     const { elements: { email, password } } = event.currentTarget;
+    
+//     (email.value === '' || password.value === '')
+//     ? alert('Please fill in all the fields!')
+//     : console.log(`Email: ${email.value} Password: ${password.value}`)
+    
+//     event.currentTarget.reset();
+// }
+
 const form = document.querySelector('.login-form');
-// console.log(form);
 
 form.addEventListener('submit', onFormSubmit);
 
 function onFormSubmit(event) {
     event.preventDefault();
-    if (form.email.value === "" || form.password.value === "") {
-        alert("Please fill in all the fields!");
-    } else {
-        const formData = new FormData(event.currentTarget);
 
-    console.log(formData);
-
-    formData.forEach((value, name) => {
+    const formData = new FormData(form);
     
-    console.log('onFormSubmit -> name:', name);
-    console.log('onFormSubmit -> value:', value);
-        
-        event.currentTarget.reset()
-    });
-    }
+    const isSubmited = {
+        Email: formData.get('email'),
+        Password: formData.get('password')
+    };
+    
+    if (form.email.value === '' || form.password.value === '') {
+        alert('Please fill in all the fields!');
+    } else {
+        console.log(isSubmited);
+        event.currentTarget.reset();
+    };
 };

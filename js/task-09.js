@@ -5,11 +5,11 @@ const refs = {
 
 refs.btn.addEventListener("click", getNewBg);
 
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
-}
-
 function getNewBg() {
   document.body.style.backgroundColor = getRandomHexColor();
-  refs.span.textContent = getRandomHexColor()
+  refs.span.textContent = document.body.style.backgroundColor;
+}
+
+function getRandomHexColor() {
+  return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
 }

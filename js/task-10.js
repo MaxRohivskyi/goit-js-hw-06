@@ -5,22 +5,26 @@ const refs = {
   boxes: document.querySelector('#boxes')
 };
 
-refs.createBtn.addEventListener('click', createBoxes);
 refs.destroyBtn.addEventListener('click', destroyBoxes);
+refs.createBtn.addEventListener('click', () => {
+  const amount = parseInt(refs.input.value);
+  amount >= 1 && amount <= 100
+    ? createBoxes(amount)
+    : alert('Please enter a number from 1 to 100 inclusive!')
+});
 
 function createBoxes(amount) {
-  amount = Number(refs.input.value);
-  // console.log(amount);
-
   const boxesArr = [];
   let boxSize = 30;
 
-  for (let i = 1; i <= amount; i += 1) {
+  for (let i = 0; i < amount; i += 1) {
     const box = document.createElement('div');
-    boxSize += 10;
-    box.style.width = `${boxSize}px`;
-    box.style.height = `${boxSize}px`;
+    box.style.width = `${boxSize + i * 10}px`;
+    box.style.height = `${boxSize + i * 10}px`;
     refs.boxes.style.display = `flex`;
+    box.style.marginRight = `5px`;
+    box.style.border = `1px solid black`;
+    box.style.borderRadius = `5px`;
     box.style.backgroundColor = getRandomHexColor();
 
     boxesArr.push(box);
@@ -30,7 +34,7 @@ function createBoxes(amount) {
 }
 
 function destroyBoxes() {
-  refs.boxes.innerHTML = "";
+  refs.boxes.innerHTML = '';
 }
 
 function getRandomHexColor() {
